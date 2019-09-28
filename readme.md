@@ -4,12 +4,11 @@ api-schema-validator is an express middleware designed to validate request body,
 
 ## Installation
 
-npm i api-schema-validator
+> npm i api-schema-validator
 
 ## Usage
-
+```
 const {validate} = require("api-schema-validator");
-
 req.post("/path", validate({
                "body" : [{
                    "email" : {
@@ -29,9 +28,10 @@ req.post("/path", validate({
                     "message" : "Request schema validated successfully"
                   })
                })
-## Abbreviation used for this documentaion
+```
+## Abbreviation used for this documentation
 
-body/param/query/cookie : bpqc
+***body/param/query/cookie : bpqc***
 
 ## Available options
 
@@ -42,9 +42,10 @@ body/param/query/cookie : bpqc
 5. "$patter" : Validates bpqc field to be in a specific regular expression field
 6. For nested body paramter validations refer to examples below
 
-6.a using dot notation
+  __using dot notation__
 
-  Below example ensures req.body.level1 and request.body.level1.level2 are present in the request body
+  ***Below example ensures req.body.level1 and request.body.level1.level2 are present in the request body***
+  ```
   req.post("/path", validate({
                "body" : [{
                       "level1.level2" : {
@@ -58,9 +59,11 @@ body/param/query/cookie : bpqc
                     "message" : "Request schema validated successfully"
                   })
                })
+  ```
+  __using nested structure__
 
-6.b using nested structure
-  Below example ensures if req.body.level1 is present, request.body.level1.level2 must be present in the request body
+  ***Below example ensures if req.body.level1 is present, request.body.level1.level2 must be present in the request body***
+  ```
   req.post("/path", validate({
                "body" : [{
                       "level1" : {
@@ -77,9 +80,10 @@ body/param/query/cookie : bpqc
                     "message" : "Request schema validated successfully"
                   })
                })
+  ```
+  > Note  : 1. Validation criteria that does not start with "$" is treated as request bpqc field.
 
-  Note : 1. Validation criteria that does not start with "$" is treated as request bpqc field.
-         2. For nested criteria, the parent can only validate with "$req"
+  > 2. For nested criteria, the parent can only validate with "$req"***
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

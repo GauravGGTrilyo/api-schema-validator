@@ -1,6 +1,6 @@
 {
   "name": "api-schema-validator",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "Validates the API schema for request body, query, params and cookies and work with any other request properties. ",
   "main": "index.js",
   "scripts": {
