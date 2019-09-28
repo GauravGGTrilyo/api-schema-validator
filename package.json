@@ -26,7 +26,7 @@
   "repository": {
     "type" : "git",
     "url" : "https://github.com/GauravGGTrilyo/api-schema-validator.git"
-  }
+  },
   "author": "Gaurav Gambhir; gaurav.gambhir.er@gmail.com",
   "license": "MIT"
 }
