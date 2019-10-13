@@ -1,3 +1,5 @@
+require('module-alias/register')
+
 let {ExtendedLogger} = require("@logger");
 let errorCodes       = require("@error-messages");
 let logger           = new ExtendedLogger("api-body-validator");

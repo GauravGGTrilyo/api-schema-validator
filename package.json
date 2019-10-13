@@ -1,6 +1,6 @@
 {
   "name": "api-schema-validator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Validates the API schema for request body, query, params and cookies and work with any other request properties. ",
   "main": "index.js",
   "scripts": {
@@ -24,9 +24,16 @@
     "regular expression"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/GauravGGTrilyo/api-schema-validator.git"
+    "type": "git",
+    "url": "https://github.com/GauravGGTrilyo/api-schema-validator.git"
+  },
+  "_moduleAliases": {
+    "@logger": "./logger.js",
+    "@error-messages": "./error-codes.js"
   },
   "author": "Gaurav Gambhir; gaurav.gambhir.er@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "module-alias": "^2.2.2"
+  }
 }
