@@ -1,7 +1,5 @@
-require('module-alias/register')
-
-let {ExtendedLogger} = require("@logger");
-let errorCodes       = require("@error-messages");
+let {ExtendedLogger} = require("./logger.js");
+let errorCodes       = require("./error-codes.js");
 let logger           = new ExtendedLogger("api-body-validator");
 const validator      = require('validator');
 
@@ -44,11 +42,10 @@ module.exports.validate = function(validationCriteria) {
  * @author Swapnil Kumar(techgenies.com)
  */
 const getNestedField = (obj,key) => {
-    logger.debug(key);
+    logger.debug(obj, key);
     let arr = key.split('.');
     for (let k of arr) {
         obj = obj[k];
-        console.log(obj);
         logger.debug("key and object", k, obj);
         if(typeof obj === "undefined") {
             return obj;
@@ -94,7 +91,6 @@ const typeCheck = (val, type) => {
  * @author Swapnil Kumar(techgenies.com)
  */
 const validateBody = function(req, body, whereInRequest, validationPath) {
-    console.log(req);
     logger.debug(body, whereInRequest);
     let isValid = true;
     for (let i=0;i<body.length;i++) {

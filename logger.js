@@ -1,6 +1,5 @@
 const { createLogger, format, transports, addColors } = require("winston");
 const { colorize, combine, label, printf, timestamp, simple } = format;
-const config = require("config");
 const myFormat = printf(({ level, message, label, timestamp }) => {
   return `${timestamp} [${label}] ${level}: ${message}`;
 });
@@ -28,7 +27,7 @@ colors: {
 addColors(logLevels);
 */
 const transportArr = [
-    new transports.Console({level: config.get("printMode") == "debug" ? 'debug' : 'warn'}),
+    new transports.Console({level: process.env.SCHEMA_PRINT_MODE == "debug" ? 'debug' : 'warn'}),
     new transports.File({filename: 'errors.log', level: 'error'}),
     new transports.File({ filename: 'combined.log', level:'warn' }),
 ];
@@ -73,7 +72,7 @@ let ExtendedLogger = function(functionNameSpace, req) {
   }
 
   this.warn = function(...args) {
-    if(config.get("environment") == "test") { return; }
+    if(process.env.NODE_ENV == "test") { return; }
     let messageLocal = _createMessage(args);
 
     logger.log({
@@ -83,7 +82,7 @@ let ExtendedLogger = function(functionNameSpace, req) {
     })
   }
   this.error = function(...args) {
-    if(config.get("environment") == "test") { return; }
+    if(process.env.NODE_ENV == "test") { return; }
     let messageLocal = _createMessage(args);
 
     logger.log({
@@ -93,7 +92,7 @@ let ExtendedLogger = function(functionNameSpace, req) {
     })
   }
   this.log = function(...args) {
-    if(config.get("environment") == "test") { return; }
+    if(process.env.NODE_ENV == "test") { return; }
     let messageLocal = _createMessage(args);
 
     logger.log({
@@ -103,8 +102,8 @@ let ExtendedLogger = function(functionNameSpace, req) {
     });
   }
   this.debug = function(...args) {
-    if(config.get("environment") == "test") { return; }
-    // if (config.get("printMode") == "debug") {
+    if(process.env.NODE_ENV == "test") { return; }
+    // if (process.env.SCHEMA_PRINT_MODE == "debug") {
 
     // }
     let messageLocal = _createMessage(args);
